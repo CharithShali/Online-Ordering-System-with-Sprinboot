@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <meta charset="ISO-8859-1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+<body>
+
+
+<div class="container">
+    <div class="col-12">
+
+
+        <hr>
+        <h3 class="text-center">Add A Product</h3>
+        <hr>
+        <div class="raw">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="product" class="tab-content">
+                            <h5 class="text-center">Add product</h5>
+                            <form class="text-center border border-light p-5 " action="adminlog"  modelAttribute="admin" >
+
+                                <label for="name">username</label>
+                                <input type="text" name="name" id="name" class="form-control">
+                                <label for="password">password</label>
+                                <input type="text" name="password" id="password" class="form-control">
+
+                                <br>
+
+                                <br>
+
+                                <button type="submit" class="btn btn-primary" href="addproduct">submit</button>
+
+                        </form>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+
+
+</body>
+</html>

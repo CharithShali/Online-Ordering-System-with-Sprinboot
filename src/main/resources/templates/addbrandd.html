@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Brands</title>
+    <meta charset="ISO-8859-1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+
+
+<div class="container">
+    <div class="col-12">
+
+        <hr>
+        <h3 class="text-center">Add A Brand</h3>
+        <hr>
+
+        <div class="raw">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+
+                        <form th:action="@{/addbrrand}" method="post" >
+                            <div class="form-group">
+                                <label class="control-label" for="name">Name </label>
+                                <input id="name" class="form-control"
+                                       required autofocus="autofocus" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="description">Name </label>
+                                <input id="description" class="form-control"
+                                       required autofocus="autofocus" />
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Register</button>
+                                <span>Already registered? <a href="/" th:href="@{/login}">Login
+								here</a></span>
+                            </div>
+                        </form>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+
+</body>
+</html>

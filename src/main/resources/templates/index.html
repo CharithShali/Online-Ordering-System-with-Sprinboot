@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>E-commerce application</title>
+
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="css/style4.css" rel="stylesheet" type="text/css"/>
+  <link href="css/card.css" rel="stylesheet" type="text/css"/>
+  <link href="css/all.min.css" rel="stylesheet" type="text/css"/>
+
+
+  <script defer
+          src="http://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+          integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+          crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <nav th:fragment="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h3>Tech Zone</h3>
+      <strong><i class="fa fa-shopping cart" aria-hidden="true"></i></strong>
+    </div>
+    <ul class="list-unstyled components">
+      <li class="active"><a href="#homeSubmenu"
+                            data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle"> <i class="fas fa-home"></i>
+
+        Home
+      </a>
+        <ul class="collapse list-unstyled" id="homeSubmenu">
+          <li><a href="#">My cart</a></li>
+          <li><a href="#">My wishlist</a></li>
+        </ul>
+      </li>
+      <li><a href="#"> <i class="fas fa-briefcase"></i>
+
+        About
+      </a> <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
+              class="dropdown-toggle"> <i class="fas fa-copy"></i>
+
+        pages
+      </a>
+        <ul class="collapse list-unstyled" id="pageSubmenu">
+          <li><a href="#">category</a></li>
+          <li><a href="#">products</a></li>
+          <li><a href="#">more</a></li>
+        </ul>
+      </li>
+      <li><a href="#"> <i class="fas fa-image"></i>
+
+        Portfolio
+      </a></li>
+      <li><a href="#"> <i class="fas fa-question"></i>
+
+        FAQ
+      </a></li>
+      <li><a href="#"> <i class="fas fa-paper-plane"></i>
+
+        Contact
+      </a></li>
+
+
+
+
+
+    </ul>
+  </nav>
+
+
+  <!-- Page Content  -->
+  <div id="content">
+    <div id="insert"></div>
+
+
+    <nav th:fragment="topbar" class="navbar navbar-expand-lg navbar-light"
+         style="border-bottom:4px solid #7386D5; ">
+      <div class="container-fluid">
+
+        <button type="button" id="sidebarCollapse"
+                class="btn btn-info mr-4">
+          <i class="fas fa-align-left"></i> <span> Toggle Sidebar</span>
+
+        </button>
+        <form class="form-inline my-2 my-lg-0"  th:action="@{/search}">
+          <input name="keyword" th:value="${keyword}" class="form-control mr-sm-2"
+                 required>
+          <input type="submit"  value="search">
+        </form>
+
+
+
+
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Category
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"  >
+            <a class="dropdown-item" th:each="category:${categories}" th:href="@{/filter/{id}(id=${category.id})}" >[[${category.name}]]</a>
+
+          </div>
+        </div>
+
+
+        <button class="btn btn-light d-inline-block d-lg-none ml-auto"
+                type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+          <i class="fas fa-align-justify"></i>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item "><a class="nav-link fl1"  href="/" th:href="@{/cartlist}"><i class="fas fa-cart-plus"
+                                                                                              title="view cart"
+                                                                                              style="color: red;font-size: 20px"></i><span
+                    class="label">10</span> </a></li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="line"></div>
+    <div class="container" id="app">
+
+
+        <div sec:authorize="isAuthenticated()" class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>hey!!! guacamole! </strong><span sec:authentication="name"></span> You should check in on some of those fields below.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+
+        </ul>
+      </div>
+    </div>
+    </nav>
+
+    <script src="https://kit.fontawesome.com/eaace8cdbb.js" crossorigin="anonymous"></script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="api/ajaxFetch.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+          $('#sidebar').toggleClass('active');
+        });
+      });
+
+      function dropDown(event) {
+        var val = $("#search").val();
+        if (val.length > 1) {
+          $.ajax({
+            type: "GET",
+            url: "/search?value=" + val,
+            processData: false,
+
+            contentType: false,
+            cache:false,
+            timeout: 6000,
+            success: function (data) {
+              $("#dropdown-container").empty();
+              $("#dropdown-container").append(data);
+              $('.dropdown-toggle').dropdown();
+
+            },
+            error: function (e) {
+              console.log("error:", e)
+            }
+          });
+
+        }
+
+      }
+
+
+    </script>
+
+
+
+</body>
+</html>
